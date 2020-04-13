@@ -32,11 +32,34 @@ class TodoItem extends Component{
           undoCounter: 0,
         })
         this.props.toggle(this.props.todo);
+        this.hideInfoBar();
       }
+    this.showInfoBar(`Touch ${3 - this.state.undoCounter} times to undo`);
     } else {
+      this.showInfoBar(`Well done!`);
       this.props.toggle(this.props.todo);
     }
   }
+
+  showInfoBar(message) {
+    let infoBar = document.querySelector('div#navbar');
+    infoBar.querySelector('div').textContent = message
+    if (infoBar.classList.contains('show')) return
+    infoBar.classList.remove('hide');
+    infoBar.classList.add('show');
+    setTimeout(() => {
+      if (infoBar.classList.contains('hide')) return
+      infoBar.classList.remove('show');
+      infoBar.classList.add('hide');
+    }, 2000)
+  }
+
+  hideInfoBar() {
+    let infoBar = document.querySelector('div#navbar');
+    infoBar.classList.remove('show');
+    infoBar.classList.add('hide');
+  }
+
   render() {
     return (
       <p className={this.class} style={this.setStyle()}>

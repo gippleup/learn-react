@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Todo from './components/Todo';
+import InfoBar from './components/InfoBar'
 // import logo from './logo.svg';
 import './App.css';
 
@@ -22,7 +23,13 @@ class App extends Component{
     }
     return (
       <div className="App">
-        <Todo todos={this.state.todos} toggle={this.toggle} />
+        <InfoBar />
+        <div className="jumbotron">
+          <h1 style={{fontWeight:'bold'}}>To-dos</h1>
+        </div>
+        <div className="content">
+          <Todo className="list" todos={this.state.todos} toggle={this.toggle} />
+        </div>
       </div>
     );
   }
